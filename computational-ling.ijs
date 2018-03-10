@@ -15,15 +15,10 @@ payoff_system=: +/"1 @:(payoff/~)
 
 NB. parameters of new generation
 NB. amt of offspring is determined by constant proprtion dividing the maximum
-NB.   possible cumulative payoff for an individual.
-prop=:2500%5
-NB. 1 1 1 {"1 1 q
-NB. (x=data) new_offspring (y=score prop)
-NB. TODO: might have to change rank.
 NB. TODO: floor tolerance might be an issue.
-new_offspring=: ((,&3)@:(<.@:%/)@:])$[
 NB. TODO: fix final grouping operation
-new_generation=: ,](new_offspring"1 1) payoff_system(,"0 1)#
+NB. duplicates each element of the list corresponding to the size of the list times a constant (2).
+new_generation=: (<.@:(]%(*&2)@:#)@:payoff_system)#]
 
 NB. analysis of particular generations
 NB. population average of P matrices
